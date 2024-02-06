@@ -4,14 +4,17 @@ def intersectingChords(chordRadians, chordPoints):
     startPointsdict1 = {}
 
     endPointsdict2 = {}
-
+    
+    #Populate dictionaries with indices of "s" and "e" labels in chordPoints
+    for index, val in enumerate(chordPoints):
     for index, val in enumerate(chordPoints):
         if 's' in val:
             startPointsdict1[val] = index
 
         elif 'e' in val:
             endPointsdict2[val] = index
-
+            
+    #Sort the dictionaries based on keys (labels)
     myKeys1 = list(startPointsdict1.keys())
     myKeys1.sort()
     sorted_dict1 = {i: startPointsdict1[i] for i in myKeys1}
@@ -24,6 +27,7 @@ def intersectingChords(chordRadians, chordPoints):
 
     sortedChords = [0] * len(chordRadians)
 
+    # Create a new list 'sortedChords' by interleaving values from chordRadians
     ptr = 0
 
     for val in sorted_dict1.values():
@@ -39,7 +43,7 @@ def intersectingChords(chordRadians, chordPoints):
     remembered = set()
     output = 0
 
-
+    # Count the number of intersecting chords
     for i in range(0, len(sortedChords), 2):
         for j in range(0, len(sortedChords), 2):
             if i == j:
